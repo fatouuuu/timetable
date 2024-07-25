@@ -16,7 +16,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 const dataFile = path.join(__dirname, 'data.json');
 
-// Load data from JSON
+// fetch data from json file and save to file once changes are made to the timetable 
 function loadData() {
   if (fs.existsSync(dataFile)) {
     const data = fs.readFileSync(dataFile);
@@ -26,14 +26,11 @@ function loadData() {
   }
 }
 
-// Save data to JSON
 function saveData(data) {
   fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
 }
 
-// Check constraints
 function validateTimetable(timetable) {
-  // Example constraints: Adjust according to your actual constraints
   const subjectHours = {
     languages: 10,
     sciences: 10,
@@ -53,13 +50,11 @@ function validateTimetable(timetable) {
   return Object.keys(subjectHours).every(subject => hoursCount[subject] <= subjectHours[subject]);
 }
 
-// Generate timetable
-// Generate timetable
 function generateTimetable() {
     const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
     const timeSlots = ['8-9am', '9-10am', '10-11am', '11am-12pm', '1-2pm', '2-3pm'];
 
-    // Example constraints
+    // constraints 
     const subjectHours = {
         languages: 10,
         sciences: 10,
@@ -73,11 +68,11 @@ function generateTimetable() {
         schedule: Array(timeSlots.length).fill(null)
     }));
 
-    // Helper function to distribute subjects
+    // helper function
     function distributeSubjects() {
         const remainingHours = { ...subjectHours };
 
-        // Loop through each day and slot
+        // loop through each day and slot
         timetable.forEach(day => {
             for (let i = 0; i < timeSlots.length; i++) {
                 const availableSubjects = subjects.filter(subject => remainingHours[subject] > 0);
@@ -89,12 +84,11 @@ function generateTimetable() {
         });
     }
 
-    // Attempt to distribute subjects
     distributeSubjects();
 
-    // If the timetable violates constraints, retry
+    // if the timetable violates constraints, retry
     if (!validateTimetable(timetable)) {
-        return generateTimetable(); // Recursively retry if constraints are violated
+        return generateTimetable(); // and then recursively recall function until constraints are met
     }
 
     saveData({ timetable, subjects: subjectHours });
@@ -102,10 +96,10 @@ function generateTimetable() {
 }
 
 
-// Routes
+// routes
 app.get('/', (req, res) => {
   const data = loadData();
-  const message = req.flash('message')[0] || {}; // Retrieve flash message
+  const message = req.flash('message')[0] || {}; 
   res.render('index', { timetable: data.timetable, subjects: Object.keys(data.subjects || {}), message });
 });
 
@@ -113,12 +107,13 @@ app.post('/generate', (req, res) => {
   const timetable = generateTimetable();
   if (validateTimetable(timetable)) {
     req.flash('message', { success: true, text: 'Timetable generated successfully.' });
-    res.redirect('/');
   } else {
     req.flash('message', { success: false, text: 'Timetable violates constraints. Please adjust and try again.' });
-    res.redirect('/');
   }
+  console.log(req.flash('message')); 
+  res.redirect('/');
 });
+
 
 app.post('/edit-slot', (req, res) => {
   const { dayIndex, slot, subject } = req.body;
