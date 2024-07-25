@@ -3,56 +3,56 @@
     {
       "day": "Monday",
       "schedule": [
-        "arts",
+        "sports",
+        "sports",
         "sciences",
-        "arts",
-        "sciences",
-        "arts",
-        "languages"
+        "languages",
+        "sports",
+        "arts"
       ]
     },
     {
       "day": "Tuesday",
       "schedule": [
-        "sciences",
-        "sciences",
-        "sciences",
-        "sciences",
         "sports",
-        "sports"
+        "sports",
+        "languages",
+        "sciences",
+        "languages",
+        "sciences"
       ]
     },
     {
       "day": "Wednesday",
       "schedule": [
         "arts",
+        "sciences",
+        "arts",
         "languages",
         "arts",
-        "sciences",
-        "sciences",
         "sciences"
       ]
     },
     {
       "day": "Thursday",
       "schedule": [
+        "languages",
+        "sciences",
         "sciences",
         "languages",
-        "sports",
-        "sports",
         "languages",
-        "sports"
+        "arts"
       ]
     },
     {
       "day": "Friday",
       "schedule": [
         "languages",
+        "sciences",
         "languages",
         "languages",
-        "languages",
-        "languages",
-        "languages"
+        "sciences",
+        "sciences"
       ]
     }
   ],
