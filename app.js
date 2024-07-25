@@ -3,11 +3,15 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
 const flash = require('express-flash');
+const session = require('express-session');
+
 
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(flash());
+app.use(session({ secret: 'your_secret_key', resave: false, saveUninitialized: true }));
+
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
