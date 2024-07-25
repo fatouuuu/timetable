@@ -107,14 +107,14 @@
                             <input type="hidden" id="dayIndex" name="dayIndex" />
                             <button type="submit" class="btn btn-primary">Save</button>
                         </form>
-                        <div id="hintMessage" class="mt-3"></div>
+                        <!-- <div id="hintMessage" class="mt-3"></div> -->
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Hint Modal -->
-        <div class="modal fade" id="hintModal" tabindex="-1" aria-labelledby="hintModalLabel" aria-hidden="true">
+        <!-- <div class="modal fade" id="hintModal" tabindex="-1" aria-labelledby="hintModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -122,11 +122,11 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p id="hintMessageContent"></p>
+                        <p id="hintMessageContent">Kindly pick another subject.</p>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- Success/Error Toast -->
         <div id="toast" class="toast" role="alert">
@@ -138,7 +138,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             const editButtons = document.querySelectorAll('.edit-button');
             const editSlotModal = new bootstrap.Modal(document.getElementById('editSlotModal'));
-            const hintModal = new bootstrap.Modal(document.getElementById('hintModal'));
+            // const hintModal = new bootstrap.Modal(document.getElementById('hintModal'));
             const toast = document.getElementById('toast');
             const toastBody = document.querySelector('#toast .toast-body');
 
@@ -163,11 +163,12 @@
                         if (response.success) {
                             toastBody.innerHTML = response.message;
                             toast.classList.add('success-toast');
+                            editSlotModal.hide();
+
                         } else {
                             toastBody.innerHTML = response.message;
                             toast.classList.add('error-toast');
-                            $('#hintMessageContent').text(response.hint || ''); // Show hint if provided
-                            hintModal.show();
+                            
                         }
                         new bootstrap.Toast(toast).show();
                     }

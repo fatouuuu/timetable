@@ -3,23 +3,23 @@
     {
       "day": "Monday",
       "schedule": [
-        "languages",
-        "languages",
+        "sports",
         "languages",
         "sciences",
+        "arts",
         "languages",
-        "sciences"
+        "sports"
       ]
     },
     {
       "day": "Tuesday",
       "schedule": [
         "sports",
-        "arts",
-        "sports",
-        "sports",
         "languages",
-        "arts"
+        "sciences",
+        "arts",
+        "languages",
+        "sports"
       ]
     },
     {
@@ -27,8 +27,8 @@
       "schedule": [
         "sports",
         "languages",
-        "sports",
-        "sports",
+        "sciences",
+        "languages",
         "arts",
         "arts"
       ]
@@ -36,22 +36,22 @@
     {
       "day": "Thursday",
       "schedule": [
-        "sports",
+        "sciences",
         "languages",
-        "sciences",
-        "sports",
-        "sciences",
-        "languages"
+        "languages",
+        "languages",
+        "arts",
+        "sciences"
       ]
     },
     {
       "day": "Friday",
       "schedule": [
-        "arts",
+        "languages",
         "sciences",
         "sciences",
-        "sports",
-        "sports",
+        "sciences",
+        "sciences",
         "sciences"
       ]
     }
